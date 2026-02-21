@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /c/ClaudeCodeStuff/DADE_OS && npm install 2>&1)",
+      "Bash(tail:*)",
+      "Bash(head:*)",
+      "Bash(cd /c/ClaudeCodeStuff/DADE_OS && npm run build 2>&1)",
+      "mcp__puppeteer__puppeteer_navigate",
+      "mcp__puppeteer__puppeteer_screenshot",
+      "mcp__puppeteer__puppeteer_evaluate",
+      "Bash(cd /c/ClaudeCodeStuff/DADE_OS && git init && git add -A && git status 2>&1)"
+    ]
+  }
+}
