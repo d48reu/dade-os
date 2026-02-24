@@ -1,26 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-amber: #FF6600;
+  --color-amber-bright: #FF8800;
+  --color-amber-dim: #993D00;
+  --color-amber-glow: rgba(255, 102, 0, 0.15);
+  --color-accent: #00FF41;
+  --color-danger: #FF0033;
+  --color-bg: #000000;
+  --font-mono: 'Share Tech Mono', 'Courier New', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  color: #FF6600;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  overflow: hidden;
+  height: 100%;
+}
+
+::selection {
+  background: #FF6600;
+  color: #000000;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #993D00;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6600;
+}
+
+/* ===== CRT EFFECTS ===== */
+
+.crt-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+/* ===== GLOW EFFECTS ===== */
+
+.glow-amber {
+  color: #FF6600;
+  text-shadow:
+    0 0 4px rgba(255, 102, 0, 0.6),
+    0 0 8px rgba(255, 102, 0, 0.3);
+}
+
+.glow-amber-bright {
+  color: #FF8800;
+  text-shadow:
+    0 0 6px rgba(255, 136, 0, 0.7),
+    0 0 12px rgba(255, 136, 0, 0.4);
+}
+
+.glow-green {
+  color: #00FF41;
+  text-shadow:
+    0 0 4px rgba(0, 255, 65, 0.6),
+    0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+/* ===== PANEL CHROME ===== */
+
+.panel {
+  border: 1px solid #FF6600;
+  box-shadow:
+    0 0 6px rgba(255, 102, 0, 0.2),
+    inset 0 0 6px rgba(255, 102, 0, 0.05);
+  background: #000000;
+  position: relative;
+}
+
+.panel-dim {
+  border: 1px solid #993D00;
+  box-shadow:
+    0 0 4px rgba(255, 102, 0, 0.1),
+    inset 0 0 4px rgba(255, 102, 0, 0.03);
+  background: #000000;
+  position: relative;
+}
+
+/* Corner bracket decorations */
+.panel-brackets::before,
+.panel-brackets::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #FF8800;
+  border-style: solid;
+  pointer-events: none;
+}
+.panel-brackets::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.panel-brackets::after {
+  top: -1px;
+  right: -1px;
+  border-width: 2px 2px 0 0;
+}
+
+/* Bottom corner brackets via wrapper or extra elements */
+.panel-brackets-bottom::before,
+.panel-brackets-bottom::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #FF8800;
+  border-style: solid;
+  pointer-events: none;
+}
+.panel-brackets-bottom::before {
+  bottom: -1px;
+  left: -1px;
+  border-width: 0 0 2px 2px;
+}
+.panel-brackets-bottom::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { text-shadow: 0 0 4px rgba(255, 102, 0, 0.6), 0 0 8px rgba(255, 102, 0, 0.3); }
+  50% { text-shadow: 0 0 8px rgba(255, 102, 0, 0.8), 0 0 16px rgba(255, 102, 0, 0.5); }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.98; }
+  15% { opacity: 0.96; }
+  20% { opacity: 0.99; }
+  100% { opacity: 0.98; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flicker 0.15s infinite;
 }
