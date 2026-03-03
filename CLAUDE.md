@@ -17,7 +17,7 @@ Building civic tech tools for Miami government data.
 - Sharp corners only. No rounded anything.
 
 ## Tech Stack
-Next.js 14+ (App Router), Tailwind, Three.js, Mapbox GL (minimap only)
+Next.js 16 (App Router), Tailwind, Three.js. Mapbox GL planned but not yet integrated (minimap is currently a canvas placeholder).
 
 ## Key Data Source
 Miami-Dade Building Footprint 2D via ArcGIS REST API
